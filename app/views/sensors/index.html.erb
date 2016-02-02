@@ -19,7 +19,7 @@
         <td><%= sensor.tagname %></td>
         <td><%= sensor.active %></td>
         <td><%= sensor.install_date %></td>
-        <td><%= sensor.location %></td>
+        <td><%= sensor.try(:location).try(:name) %></td>
         <td><%= link_to 'Show', sensor %></td>
         <td><%= link_to 'Edit', edit_sensor_path(sensor) %></td>
         <td><%= link_to 'Destroy', sensor, method: :delete, data: { confirm: 'Are you sure?' } %></td>

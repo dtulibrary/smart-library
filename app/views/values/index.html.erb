@@ -8,7 +8,9 @@
       <th>Temp</th>
       <th>Sound</th>
       <th>Light</th>
-      <th>Sensor</th>
+      <th>SensorTag</th>
+      <th>Location</th>
+      <th>Created At:</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,7 +21,9 @@
         <td><%= value.temp %></td>
         <td><%= value.sound %></td>
         <td><%= value.light %></td>
-        <td><%= value.sensor %></td>
+        <td><%= value.sensor.try(:tagname) %></td>
+        <td><%= value.sensor.try(:location).try(:name) %></td>
+        <td><%= value.created_at %></td>
         <td><%= link_to 'Show', value %></td>
         <td><%= link_to 'Edit', edit_value_path(value) %></td>
         <td><%= link_to 'Destroy', value, method: :delete, data: { confirm: 'Are you sure?' } %></td>

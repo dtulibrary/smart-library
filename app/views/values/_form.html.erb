@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :sensor_id %><br>
+    <%= f.collection_select :sensor_id, Sensor.all, :id, :viktor %>
+  </div>
+  <div class="field">
     <%= f.label :temp %><br>
     <%= f.number_field :temp %>
   </div>
@@ -22,10 +26,6 @@
   <div class="field">
     <%= f.label :light %><br>
     <%= f.number_field :light %>
-  </div>
-  <div class="field">
-    <%= f.label :sensor_id %><br>
-    <%= f.text_field :sensor_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
