@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   resources :values
   resources :sensors
   resources :locations
