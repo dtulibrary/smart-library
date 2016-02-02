@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+  <%= link_to("Values", values_path) %>
+  <%= link_to("Sensors", sensors_path) %>
+  <%= link_to("Location", locations_path) %>
 <%= yield %>
 
 </body>
