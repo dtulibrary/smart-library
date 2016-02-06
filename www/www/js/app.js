@@ -5,13 +5,20 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('smartlib', ['ionic'])
 
-.controller('MainCtrl', function($scope){
+.controller('MainCtrl', function($scope, $http){
   $scope.sensorList = [
   { text: "Light", checked: true,  value: 551, unit:"LUX" },
   { text: "Sound", checked: true,  value: 45 , unit:"dB"},
   { text: "Temp",  checked: false, value: 21 , unit:"°C"},
   { text: "CO2",   checked: false, value: 191, unit:"" }
   ];
+  
+  $http.get('http://localhost:3000/values.json').then(function(resp){
+    console.log('Succ', resp);
+  }, function(err){
+    console.log('ERR', err);
+  })
+
 })
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
