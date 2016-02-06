@@ -6,15 +6,31 @@
 angular.module('smartlib', ['ionic'])
 
 .controller('MainCtrl', function($scope, $http){
-  $scope.sensorList = [
-  { text: "Light", checked: true,  value: 551, unit:"LUX" },
-  { text: "Sound", checked: true,  value: 45 , unit:"dB"},
-  { text: "Temp",  checked: false, value: 21 , unit:"°C"},
-  { text: "CO2",   checked: false, value: 191, unit:"" }
-  ];
-  
+
+  $scope.valueArr = [0,0,0,0];
   $http.get('http://localhost:3000/values.json').then(function(resp){
-    console.log('Succ', resp);
+    $scope.allData = resp.data;
+
+    // Sum all data
+    for(item in $scope.allData){
+      $scope.valueArr[0] += $scope.allData[item].light
+      $scope.valueArr[1] += $scope.allData[item].sound
+      $scope.valueArr[2] += $scope.allData[item].temp
+    } 
+
+    // Get the average
+    for(item in $scope.valueArr){
+      $scope.valueArr[item] /= $scope.allData.length
+      $scope.valueArr[item] = Math.round($scope.valueArr[item])
+    }
+
+    $scope.sensorList = [
+    { text: "Light", checked: true,  value: $scope.valueArr[0],  unit:"LUX" },
+    { text: "Sound", checked: true,  value: $scope.valueArr[1] , unit:"dB"},
+    { text: "Temp",  checked: false, value: $scope.valueArr[2] , unit:"°C"},
+    { text: "CO2",   checked: false, value: 191, unit:"" }
+    ];
+
   }, function(err){
     console.log('ERR', err);
   })

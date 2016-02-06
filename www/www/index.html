@@ -24,12 +24,16 @@
   <body ng-app="smartlib" ng-controller="MainCtrl">
 
     <ion-pane>
+
       <ion-header-bar class="bar-stable">
         <button class="button button-icon icon ion-navicon"></button>
         <h1 class="title">Smart Library</h1>
         <a class="button button-icon icon ion-settings"></a>
       </ion-header-bar>
+
       <ion-content>
+        <ion-refresher pulling-text="Do we need a refresh?">
+        </ion-refresher>
         <h4>See last X minute average:</h4>
         <div class="item range">
           <i class="icon ion-ios-speedometer-outline"></i>
@@ -43,17 +47,20 @@
             ng-repeat="item in sensorList" 
             ng-model="item.checked"
             ng-checked="item.checked">
-            {{item.text}} - {{item.value}} {{item.unit}}
+            {{item.text}} : {{item.value}} {{item.unit}}
           </ion-checkbox>
         </div>
 
+        <!--
         <div class="item">
           <pre ng-bind="sensorList | json"> </pre>
         </div>
+        -->
 
-
-
-
+        <br>
+        <br>
+        <br>
+        <br>
         <br>
         <h4>Control the lights *next* to you: (Experimental)</h4>
         <div class="item range">
@@ -62,6 +69,8 @@
           <i class="icon ion-ios-lightbulb"></i>
         </div>
       </ion-content>
+
     </ion-pane>
+
   </body>
 </html>
