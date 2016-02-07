@@ -15,6 +15,7 @@ Sensor.delete_all
 8.times do |s|
   Sensor.create!(
     tagname:"Sensor#{s}", 
+    active: rand(0..1),
     location: Location.offset(rand(Location.count)).first,
     install_date: rand(3.years).seconds.ago
   )
