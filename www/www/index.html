@@ -25,14 +25,16 @@
 
     <ion-pane>
 
-      <ion-header-bar class="bar-stable">
+      <ion-header-bar class="bar-positive">
         <button class="button button-icon icon ion-navicon"></button>
         <h1 class="title">Smart Library</h1>
         <a class="button button-icon icon ion-settings"></a>
       </ion-header-bar>
 
       <ion-content>
-        <ion-refresher pulling-text="Do we need a refresh?">
+        <ion-refresher 
+           pulling-text="Pull down to refresh" 
+           on-refresh="doRefresh()">
         </ion-refresher>
         <h4>See last X minute average:</h4>
         <div class="item range">
@@ -59,6 +61,7 @@
 
         <br>
         <br>
+        Here we should have a heatmap of the area
         <br>
         <br>
         <br>

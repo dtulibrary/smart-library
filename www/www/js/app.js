@@ -8,32 +8,36 @@ angular.module('smartlib', ['ionic'])
 .controller('MainCtrl', function($scope, $http){
 
   $scope.valueArr = [0,0,0,0];
-  $http.get('http://localhost:3000/values.json').then(function(resp){
-    $scope.allData = resp.data;
+  $scope.doRefresh = function(){
 
-    // Sum all data
-    for(item in $scope.allData){
-      $scope.valueArr[0] += $scope.allData[item].light
-      $scope.valueArr[1] += $scope.allData[item].sound
-      $scope.valueArr[2] += $scope.allData[item].temp
-    } 
+    $http.get('http://192.168.1.64:3000/values.json').then(function(resp){
+      $scope.allData = resp.data;
 
-    // Get the average
-    for(item in $scope.valueArr){
-      $scope.valueArr[item] /= $scope.allData.length
-      $scope.valueArr[item] = Math.round($scope.valueArr[item])
-    }
+      // Sum all data
+      for(item in $scope.allData){
+        $scope.valueArr[0] += $scope.allData[item].light
+        $scope.valueArr[1] += $scope.allData[item].sound
+        $scope.valueArr[2] += $scope.allData[item].temp
+      } 
 
-    $scope.sensorList = [
-    { text: "Light", checked: true,  value: $scope.valueArr[0],  unit:"LUX" },
-    { text: "Sound", checked: true,  value: $scope.valueArr[1] , unit:"dB"},
-    { text: "Temp",  checked: false, value: $scope.valueArr[2] , unit:"°C"},
-    { text: "CO2",   checked: false, value: 191, unit:"" }
-    ];
+      // Get the average
+      for(item in $scope.valueArr){
+        $scope.valueArr[item] /= $scope.allData.length
+        $scope.valueArr[item] = Math.round($scope.valueArr[item])
+      }
 
-  }, function(err){
-    console.log('ERR', err);
-  })
+      $scope.sensorList = [
+      { text: "Light", checked: true,  value: $scope.valueArr[0],  unit:"LUX" },
+      { text: "Sound", checked: true,  value: $scope.valueArr[1] , unit:"dB"},
+      { text: "Temp",  checked: false, value: $scope.valueArr[2] , unit:"°C"},
+      { text: "CO2",   checked: false, value: 191, unit:"" }
+      ];
+
+      $scope.$broadcast('scroll.refreshComplete')
+    }, function(err){
+      console.log('ERR', err);
+    })
+  }
 
 })
 .run(function($ionicPlatform) {
