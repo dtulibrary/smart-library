@@ -23,10 +23,11 @@
   </head>
   <body ng-app="smartlib" ng-controller="MainCtrl">
 
-    <ion-pane>
+    <ion-side-menus>
+      <ion-side-menu-content>
 
       <ion-header-bar class="bar-positive">
-        <button class="button button-icon icon ion-navicon"></button>
+        <button class="button button-icon icon ion-navicon" ng-click="toggleLeft()"></button>
         <h1 class="title">Smart Library</h1>
         <a class="button button-icon icon ion-settings"></a>
       </ion-header-bar>
@@ -36,10 +37,11 @@
            pulling-text="Pull down to refresh" 
            on-refresh="doRefresh()">
         </ion-refresher>
-        <h4>See last X minute average:</h4>
+        <h4>See last {{ timeSelection }}  minute average:</h4>
         <div class="item range">
           <i class="icon ion-ios-speedometer-outline"></i>
-          <input type="range" name="volume">
+          <input type="range" name="volume" ng-model="timeSelection"
+                min="0" max="60" value="viktor">
           <i class="icon ion-ios-speedometer"></i>
         </div>
         <br>
@@ -60,20 +62,28 @@
         -->
 
         <br>
-        <br>
         Here we should have a heatmap of the area
         <br>
         <br>
-        <br>
-        <h4>Control the lights *next* to you: (Experimental)</h4>
+        <h4>Control the lights *next* to you: (Experimental {{lightSelection}})</h4>
         <div class="item range">
           <i class="icon ion-ios-lightbulb-outline"></i>
-          <input type="range" name="volume">
+          <input type="range" name="volume" ng-model="lightSelection"
+              min="0" max="100" value="lightSelection">
           <i class="icon ion-ios-lightbulb"></i>
         </div>
       </ion-content>
+      </ion-side-menu-content>
 
-    </ion-pane>
-
+      <ion-side-menu side="left">
+        <ion-list>
+          <ion-item>First</ion-item>
+          <ion-item>First2</ion-item>
+        </ion-list>
+        <ion-list>
+          <ion-item>Second</ion-item>
+        </ion-list>
+      </ion-side-menu>
+    </ion-side-menus>
   </body>
 </html>

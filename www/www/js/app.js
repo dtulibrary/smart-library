@@ -5,24 +5,28 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('smartlib', ['ionic'])
 
-.controller('MainCtrl', function($scope, $http){
+.controller('MainCtrl', function($scope, $http, $ionicSideMenuDelegate){
 
-  $scope.valueArr = [0,0,0,0];
-  $scope.doRefresh = function(){
+  $scope.timeSelection = 10;
+  $scope.lightSelection = 60;
+  $scope.toggleLeft = function() {
+    $ionicSideMenuDelegate.toggleLeft()
+  }
 
+  $scope.getAllData = function(){
+    $scope.valueArr = [0,0,0,0];
     $http.get('http://192.168.1.64:3000/values.json').then(function(resp){
-      $scope.allData = resp.data;
 
-      // Sum all data
-      for(item in $scope.allData){
-        $scope.valueArr[0] += $scope.allData[item].light
-        $scope.valueArr[1] += $scope.allData[item].sound
-        $scope.valueArr[2] += $scope.allData[item].temp
+      // Sum all data into empty array
+      for(item in resp.data){
+        $scope.valueArr[0] += resp.data[item].light
+        $scope.valueArr[1] += resp.data[item].sound
+        $scope.valueArr[2] += resp.data[item].temp
       } 
 
-      // Get the average
+      // Get the average and round the value
       for(item in $scope.valueArr){
-        $scope.valueArr[item] /= $scope.allData.length
+        $scope.valueArr[item] /= resp.data.length
         $scope.valueArr[item] = Math.round($scope.valueArr[item])
       }
 
@@ -33,10 +37,17 @@ angular.module('smartlib', ['ionic'])
       { text: "CO2",   checked: false, value: 191, unit:"" }
       ];
 
-      $scope.$broadcast('scroll.refreshComplete')
+      $scope.$broadcast('scroll.refreshComplete');
     }, function(err){
       console.log('ERR', err);
-    })
+    });
+  }
+
+  // Run once
+  $scope.getAllData();
+
+  $scope.doRefresh = function(){
+    $scope.getAllData();
   }
 
 })
