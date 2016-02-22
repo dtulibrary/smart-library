@@ -23,6 +23,7 @@ index do
   column "Sensor" do |x|
     link_to x.sensor_id, admin_sensor_path(x.sensor_id)
   end
+  actions
   
 end
 
