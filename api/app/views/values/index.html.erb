@@ -8,7 +8,7 @@
     <th>light</th>
   </thead>
   <tbody>
-    <% for item in @values %>
+    <% @values.each do |item| %>
       <tr>
         <td> <%= item.id  %>  </td>
         <td> <%= item.try(:temp)  %>  </td>
