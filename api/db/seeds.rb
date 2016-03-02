@@ -22,8 +22,8 @@ Sensor.delete_all
 end
 
 Value.delete_all
-5.times do |v|
-  Value.create!(created_at: rand(1..60).minutes.ago, temp:rand(18..25), sound:rand(25..85), light:rand(400..800), sensor: Sensor.offset(rand(Sensor.count)).first);
+35.times do |v|
+  Value.create!(created_at: rand(1..160).minutes.ago, temp:rand(18..25), sound:rand(25..85), light:rand(400..800), sensor: Sensor.offset(rand(Sensor.count)).first);
 end
 
 
