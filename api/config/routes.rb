@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'values/index'
 
   ActiveAdmin.routes(self)
-  root 'welcome#index'
+  root 'values#index'
 
   resources :values
   resources :sensors
