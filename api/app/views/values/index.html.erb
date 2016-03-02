@@ -1,4 +1,13 @@
 <h1>Values#index</h1>
+
+<%= form_tag(values_path, method: "get", id: "search-form" ) do %>
+  <%= label_tag(:q, "Show last :") %>
+  <%= text_field_tag :minutes, params[:minutes], placeholder: "nr of minutes" %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+
 <p>Find me in app/views/values/index.html.erb</p>
 <table>
   <thead>
