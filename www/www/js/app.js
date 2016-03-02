@@ -15,7 +15,7 @@ angular.module('smartlib', ['ionic'])
 
   $scope.getAllData = function(){
     $scope.valueArr = [0,0,0,0];
-    $http.get('http://192.168.1.64:3000/values.json').then(function(resp){
+    $http.get('http://localhost:3000/values.json').then(function(resp){
 
       // Sum all data into empty array
       for(item in resp.data){
