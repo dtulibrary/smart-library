@@ -37,11 +37,11 @@
            pulling-text="Pull down to refresh" 
            on-refresh="doRefresh()">
         </ion-refresher>
-        <h4>See last {{ timeSelection }}  minute average:</h4>
+        <h4>See last {{ timeSelection.minutes }}  minute average:</h4>
         <div class="item range">
           <i class="icon ion-ios-speedometer-outline"></i>
-          <input type="range" name="volume" ng-model="timeSelection"
-                min="0" max="60" value="viktor">
+          <input type="range"  ng-model="timeSelection.minutes" ng-click="timeChange()"
+                 min="0" max="60" >
           <i class="icon ion-ios-speedometer"></i>
         </div>
         <br>
@@ -68,8 +68,8 @@
         <h4>Control the lights *next* to you: (Experimental {{lightSelection}})</h4>
         <div class="item range">
           <i class="icon ion-ios-lightbulb-outline"></i>
-          <input type="range" name="volume" ng-model="lightSelection"
-              min="0" max="100" value="lightSelection">
+          <input type="range" name="lights" ng-model="lightSelection"
+              min="0" max="100" >
           <i class="icon ion-ios-lightbulb"></i>
         </div>
       </ion-content>
