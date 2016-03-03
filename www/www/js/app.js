@@ -7,12 +7,14 @@ angular.module('smartlib', ['ionic'])
 
 .controller('MainCtrl', function($scope, $http, $ionicSideMenuDelegate){
 
-  msg = 22;
-  $scope.lightSelection = 60;
-  $scope.timeSelection = {};
+  $scope.data = {
+    lightSelection : 60,
+    minutes : 15
+  };
 
   $scope.timeChange = function(){
-    console.log($scope.timeSelection.minutes);
+    //console.log($scope.data.minutes);
+    $scope.getAllData();
   }
 
   $scope.toggleLeft = function() {
@@ -20,16 +22,15 @@ angular.module('smartlib', ['ionic'])
   }
 
   $scope.getAllData = function(){
-    console.log('Getting all data:');
-    console.log($scope.timeSelection);
+    //console.log('Getting all data:');
     $scope.valueArr = [0,0,0,0];
     
     $http({
       url : 'http://192.168.1.64:3000/values.json',
       method: "GET",
-      params: { minutes : $scope.timeSelection.minutes }
+      params: { minutes : $scope.data.minutes }
     }).then(function(resp){
-      console.log(resp);
+      // console.log(resp);
       // Sum all data into empty array
       for(item in resp.data){
         $scope.valueArr[0] += resp.data[item].light
