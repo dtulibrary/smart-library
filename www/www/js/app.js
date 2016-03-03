@@ -57,10 +57,10 @@ angular.module('smartlib', ['ionic'])
       }
 
       $scope.sensorList = [
-      { text: "Light", checked: true,  value: $scope.valueArr[0],  unit:"LUX" },
-      { text: "Sound", checked: true,  value: $scope.valueArr[1] , unit:"dB"},
-      { text: "Temp",  checked: false, value: $scope.valueArr[2] , unit:"°C"},
-      { text: "CO2",   checked: false, value: 191, unit:"" }
+      { text: "Light", checked: true,  icon:"ion-ios-lightbulb",  value: $scope.valueArr[0],  unit:"LUX" },
+      { text: "Sound", checked: true,  icon:"ion-volume-medium",  value: $scope.valueArr[1] , unit:"dB"},
+      { text: "Temp",  checked: false, icon:"ion-thermometer",  value: $scope.valueArr[2] , unit:"°C"},
+      { text: "CO2",   checked: false, icon:"ion-leaf",  value: 191, unit:"" }
       ];
 
       $scope.$broadcast('scroll.refreshComplete');

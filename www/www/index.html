@@ -39,10 +39,10 @@
         </ion-refresher>
         <h4>See last {{ data.minutes }}  minute average:</h4>
         <div class="item range">
-          <i class="icon ion-ios-speedometer-outline"></i>
+          <i class="icon ion-ios-time-outline"></i>
           <input type="range"  ng-model="data.minutes" on-release="timeChange()"
                  min="0" max="160" >
-          <i class="icon ion-ios-speedometer"></i>
+          <i class="icon ion-ios-time"></i>
         </div>
         <br>
         <h4>Select items for the heatmap:</h4>
@@ -77,11 +77,15 @@
 
       <ion-side-menu side="left">
         <ion-list>
-          <ion-item>First</ion-item>
-          <ion-item>First2</ion-item>
-        </ion-list>
-        <ion-list>
-          <ion-item>Second</ion-item>
+          <ion-item>Select items do display</ion-item>
+          <ion-checkbox 
+            ng-repeat="item in sensorList" 
+            ng-model="item.checked"
+            ng-checked="item.checked"> 
+            <i class="icon {{item.icon}}"></i> - 
+            {{item.text}}
+          </ion-checkbox>
+
         </ion-list>
       </ion-side-menu>
     </ion-side-menus>
