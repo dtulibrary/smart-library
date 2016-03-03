@@ -25,9 +25,9 @@ angular.module('smartlib', ['ionic'])
     $scope.valueArr = [0,0,0,0];
     
     $http({
-      url : 'http://localhost:3000/values.json',
+      url : 'http://192.168.1.64:3000/values.json',
       method: "GET",
-      params: { minutes : 100 }
+      params: { minutes : $scope.timeSelection.minutes }
     }).then(function(resp){
       console.log(resp);
       // Sum all data into empty array
