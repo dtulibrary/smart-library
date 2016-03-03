@@ -11,9 +11,14 @@ angular.module('smartlib', ['ionic'])
     lightSelection : 60,
     minutes : 15
   };
+  
+  $scope.lightChange = function(){
+    // When light slider is released
+    // Should post a value to a service indicating the light strength value
+  }
 
   $scope.timeChange = function(){
-    //console.log($scope.data.minutes);
+    // When time range slider is released
     $scope.getAllData();
   }
 
@@ -22,7 +27,11 @@ angular.module('smartlib', ['ionic'])
   }
 
   $scope.getAllData = function(){
-    //console.log('Getting all data:');
+    // Gets all the data from our rails API
+
+    console.log('Getting all data:');
+    
+    // all values reset at zero: light, sound, temp, co2
     $scope.valueArr = [0,0,0,0];
     
     $http({
@@ -40,8 +49,11 @@ angular.module('smartlib', ['ionic'])
 
       // Get the average and round the value
       for(item in $scope.valueArr){
-        $scope.valueArr[item] /= resp.data.length
-        $scope.valueArr[item] = Math.round($scope.valueArr[item])
+        // Don't try to devide by zero
+        if($scope.valueArr[item] !== 0 ){
+          $scope.valueArr[item] /= resp.data.length
+          $scope.valueArr[item] = Math.round($scope.valueArr[item])
+        }
       }
 
       $scope.sensorList = [

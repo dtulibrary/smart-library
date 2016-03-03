@@ -40,7 +40,7 @@
         <h4>See last {{ data.minutes }}  minute average:</h4>
         <div class="item range">
           <i class="icon ion-ios-speedometer-outline"></i>
-          <input type="range"  ng-model="data.minutes" ng-click="timeChange()"
+          <input type="range"  ng-model="data.minutes" on-release="timeChange()"
                  min="0" max="160" >
           <i class="icon ion-ios-speedometer"></i>
         </div>
@@ -68,8 +68,8 @@
         <h4>Control the lights *next* to you: (Experimental {{data.lightSelection}})</h4>
         <div class="item range">
           <i class="icon ion-ios-lightbulb-outline"></i>
-          <input type="range" name="lights" ng-model="data.lightSelection"
-              min="0" max="100" >
+          <input type="range" name="lights" ng-model="data.lightSelection" on-release="lightChange()"
+              min="0" max="100"  >
           <i class="icon ion-ios-lightbulb"></i>
         </div>
       </ion-content>
